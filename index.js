@@ -5,12 +5,14 @@ import {
   TouchableWithoutFeedback,
   Animated,
   Easing,
-  Image
+  Image,
+  View
 } from "react-native";
 import PropTypes from "prop-types";
-import ViewOverflow from "react-native-view-overflow";
+// import ViewOverflow from "react-native-view-overflow";
 
-const AnimatedViewOverflow = Animated.createAnimatedComponent(ViewOverflow);
+// const AnimatedViewOverflow = Animated.createAnimatedComponent(ViewOverflow);
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 class TabBar extends Component {
   constructor(props) {
@@ -25,6 +27,13 @@ class TabBar extends Component {
       this.animatedImageValues[index] = new Animated.Value(0);
       this.animatedMiniBubbleValues[index] = new Animated.Value(0);
     });
+      // this.renderIcon = this.props.renderIcon;
+      // this.activeTintColor = this.props.activeTintColor;
+      // this.inactiveTintColor = this.props.inactiveTintColor;
+      // this.onTabPress = this.props.onTabPress;
+      // this.onTabLongPress = this.props.onTabLongPress
+      // this.getAccessibilityLabel = this.props.getAccessibilityLabel
+      // this.navigation = this.props.navigation      
   }
 
   static defaultProps = {
@@ -36,7 +45,20 @@ class TabBar extends Component {
   };
 
   _renderButtons = () => {
-    return this.props.values.map((item, index) => {
+    const {
+      renderIcon,
+      getLabelText,
+      activeTintColor,
+      inactiveTintColor,
+      onTabPress,
+      onTabLongPress,
+      getAccessibilityLabel,
+      navigation
+    } = this.props;
+
+    const { routes, index: activeRouteIndex } = navigation.state;
+
+    return routes.map((route, index) => {
       const animatedItemStyle = {
         transform: [{ translateY: this.animatedItemValues[index] }]
       };
@@ -89,13 +111,18 @@ class TabBar extends Component {
         transform: [{ translateY: animatedTitleValues }]
       };
 
+      const isRouteActive = index === activeRouteIndex;
+
       return (
+        
         <TouchableWithoutFeedback
           key={index}
           onPress={() => {
             if (index === this.state.lastSelectedIndex) {
               return;
             }
+            
+            onTabPress({ route });
 
             this.startAnimation(index);
 
@@ -110,7 +137,7 @@ class TabBar extends Component {
             this.props.onPress(index);
           }}
         >
-          <AnimatedViewOverflow style={[styles.item, animatedItemStyle]}>
+          <AnimatedView style={[styles.item, animatedItemStyle]}>
             <Image
               style={styles.itemMask}
               source={require("./assets/mask.png")}
@@ -129,19 +156,21 @@ class TabBar extends Component {
                 animatedMiniBubbleStyle
               ]}
             />
-            <Animated.Image source={item.icon} style={animatedImageStyle} />
+            {/* <Animated.Image source={item.icon} style={animatedImageStyle} /> */}
+            {renderIcon({ route, focused: isRouteActive, tintColor: "white" })}
             <Animated.View style={[styles.titleContainer, animatedTitleStyle]}>
               <Animated.Text
                 numberOfLines={1}
                 adjustsFontSizeToFit={true}
                 style={{
-                  color: this.props.tintColor
+                  color: this.props.tintColor,
+                  fontSize: 11
                 }}
               >
-                {item.title}
+                {getLabelText({ route })}
               </Animated.Text>
             </Animated.View>
-          </AnimatedViewOverflow>
+          </AnimatedView>
         </TouchableWithoutFeedback>
       );
     });
@@ -204,9 +233,9 @@ class TabBar extends Component {
 
   render() {
     return (
-      <AnimatedViewOverflow style={styles.container}>
+      <AnimatedView style={styles.container}>
         {this._renderButtons()}
-      </AnimatedViewOverflow>
+      </AnimatedView>
     );
   }
 }
