@@ -136,7 +136,9 @@ class TabBar extends Component {
               lastSelectedIndex: index
             });
 
-            this.props.onPress(index);
+            if(this.props.onPress) {
+              this.props.onPress(index);
+            }
           }}
         >
           <AnimatedView style={[styles.item, animatedItemStyle]}>
