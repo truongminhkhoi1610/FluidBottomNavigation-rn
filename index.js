@@ -41,7 +41,7 @@ class TabBar extends Component {
   };
 
   state = {
-    lastSelectedIndex: null
+    lastSelectedIndex: this.props.navigation.state.index,
   };
 
   _renderButtons = () => {
@@ -112,6 +112,8 @@ class TabBar extends Component {
       };
 
       const isRouteActive = index === activeRouteIndex;
+
+      this.startAnimation(activeRouteIndex);
 
       return (
         
