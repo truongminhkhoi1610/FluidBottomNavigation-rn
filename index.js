@@ -21,7 +21,7 @@ class TabBar extends Component {
     this.animatedBubbleValues = [];
     this.animatedMiniBubbleValues = [];
     this.animatedImageValues = [];
-    this.props.values.forEach((item, index) => {
+    this.props.navigation.state.routes.forEach((item, index) => {
       this.animatedItemValues[index] = new Animated.Value(0);
       this.animatedBubbleValues[index] = new Animated.Value(0);
       this.animatedImageValues[index] = new Animated.Value(0);
@@ -243,13 +243,7 @@ class TabBar extends Component {
 }
 
 TabBar.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  values: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      icon: PropTypes.number.isRequired
-    })
-  ),
+  onPress: PropTypes.func,
   tintColor: PropTypes.string
 };
 
