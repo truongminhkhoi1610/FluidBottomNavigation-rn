@@ -135,17 +135,21 @@ class TabBar extends Component {
             this.setState({
               lastSelectedIndex: index
             });
-
+            
             if(this.props.onPress) {
               this.props.onPress(index);
             }
           }}
         >
-          <AnimatedView style={[styles.item, animatedItemStyle]}>
+          <View>
+          <AnimatedView style={[styles.mask, animatedItemStyle]}>
             <Image
               style={styles.itemMask}
               source={require("./assets/mask.png")}
             />
+          </AnimatedView>
+          <View style={styles.barMask}></View>
+          <AnimatedView style={[styles.item, animatedItemStyle]}>
             <Animated.View
               style={[
                 styles.bubble,
@@ -175,6 +179,7 @@ class TabBar extends Component {
               </Animated.Text>
             </Animated.View>
           </AnimatedView>
+          </View>
         </TouchableWithoutFeedback>
       );
     });
@@ -256,19 +261,44 @@ const styles = {
     width: "100%",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
+
+    
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#555',
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    elevation: 1,
+    marginTop: 10,
+  },
+  barMask: {
+    position: 'absolute',
+    height: 60,
+    width: 1000,
+    marginLeft: -20,
+    backgroundColor: 'white',
+    elevation:0,
   },
   item: {
     backgroundColor: "white",
     borderRadius: 30,
     height: 60,
-    width: 60,
+    width: 55,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  mask: {
+    marginLeft: -20.4,
+    marginTop: -2.05,
+    position: 'absolute',
   },
   itemMask: {
-    tintColor: "white",
-    position: "absolute"
+    position: "absolute",
+    elevation: 1,
   },
   bubble: {
     position: "absolute",
