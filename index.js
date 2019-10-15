@@ -189,26 +189,26 @@ class TabBar extends Component {
     Animated.parallel([
       Animated.timing(this.animatedItemValues[index], {
         toValue: -30,
-        duration: 500,
-        delay: 300,
+        duration: 250,
+        delay: 20,
         easing: Easing.in(Easing.elastic(1.5)),
         useNativeDriver: true
       }),
       Animated.timing(this.animatedMiniBubbleValues[index], {
         toValue: 1,
-        duration: 1000,
-        delay: 300,
+        duration: 500,
+        delay: 20,
         useNativeDriver: true
       }),
       Animated.timing(this.animatedBubbleValues[index], {
         toValue: 1,
-        duration: 800,
+        duration: 400,
         easing: Easing.inOut(Easing.out(Easing.ease)),
         useNativeDriver: true
       }),
       Animated.timing(this.animatedImageValues[index], {
         toValue: 1,
-        duration: 800
+        duration: 400
       })
     ]).start();
   };
@@ -218,7 +218,7 @@ class TabBar extends Component {
       Animated.timing(this.animatedItemValues[index], {
         toValue: 0,
         duration: 400,
-        delay: 350,
+        delay: 175,
         useNativeDriver: true
       }),
       Animated.timing(this.animatedMiniBubbleValues[index], {
@@ -228,14 +228,14 @@ class TabBar extends Component {
       }),
       Animated.timing(this.animatedBubbleValues[index], {
         toValue: 0,
-        duration: 750,
+        duration: 375,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true
       }),
       Animated.timing(this.animatedImageValues[index], {
         toValue: 0,
         duration: 400,
-        delay: 350
+        delay: 0
       })
     ]).start();
   };
@@ -279,9 +279,8 @@ const styles = {
     position: 'absolute',
     height: 60,
     width: 1000,
-    marginLeft: -20,
+    marginLeft: -18,
     backgroundColor: 'white',
-    elevation:0,
   },
   item: {
     backgroundColor: "white",
@@ -292,13 +291,12 @@ const styles = {
     justifyContent: "center",
   },
   mask: {
-    marginLeft: -20.4,
-    marginTop: -2.05,
+    marginLeft: -21,
+    marginTop: -1.3,
     position: 'absolute',
   },
   itemMask: {
     position: "absolute",
-    elevation: 1,
   },
   bubble: {
     position: "absolute",
