@@ -283,7 +283,7 @@ const styles = {
     backgroundColor: 'white',
   },
   item: {
-    backgroundColor: "white",
+    backgroundColor: '#0000',
     borderRadius: 30,
     height: 60,
     width: 55,
@@ -291,7 +291,7 @@ const styles = {
     justifyContent: "center",
   },
   mask: {
-    marginLeft: -21,
+    marginLeft: -22,
     marginTop: -1.3,
     position: 'absolute',
   },
