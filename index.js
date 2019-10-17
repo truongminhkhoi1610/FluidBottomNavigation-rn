@@ -27,13 +27,6 @@ class TabBar extends Component {
       this.animatedImageValues[index] = new Animated.Value(0);
       this.animatedMiniBubbleValues[index] = new Animated.Value(0);
     });
-      // this.renderIcon = this.props.renderIcon;
-      // this.activeTintColor = this.props.activeTintColor;
-      // this.inactiveTintColor = this.props.inactiveTintColor;
-      // this.onTabPress = this.props.onTabPress;
-      // this.onTabLongPress = this.props.onTabLongPress
-      // this.getAccessibilityLabel = this.props.getAccessibilityLabel
-      // this.navigation = this.props.navigation      
   }
 
   static defaultProps = {
@@ -164,7 +157,6 @@ class TabBar extends Component {
                 animatedMiniBubbleStyle
               ]}
             />
-            {/* <Animated.Image source={item.icon} style={animatedImageStyle} /> */}
             {renderIcon({ route, focused: isRouteActive, tintColor: "white" })}
             <Animated.View style={[styles.titleContainer, animatedTitleStyle]}>
               <Animated.Text
@@ -172,7 +164,7 @@ class TabBar extends Component {
                 adjustsFontSizeToFit={true}
                 style={{
                   color: this.props.tintColor,
-                  fontSize: 11
+                  fontSize: 10
                 }}
               >
                 {getLabelText({ route })}
