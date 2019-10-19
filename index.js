@@ -49,6 +49,8 @@ class TabBar extends Component {
       navigation
     } = this.props;
 
+    // alert(JSON.stringify(Object.keys(this.props)));
+
     const { routes, index: activeRouteIndex } = navigation.state;
 
     return routes.map((route, index) => {
@@ -106,7 +108,11 @@ class TabBar extends Component {
 
       const isRouteActive = index === activeRouteIndex;
 
+      this.endAnimation(this.state.lastSelectedIndex);
+
       this.startAnimation(activeRouteIndex);
+
+      this.state.lastSelectedIndex = activeRouteIndex;
 
       return (
         
@@ -116,6 +122,8 @@ class TabBar extends Component {
             if (index === this.state.lastSelectedIndex) {
               return;
             }
+
+            // alert('tabPressed');
             
             onTabPress({ route });
 
