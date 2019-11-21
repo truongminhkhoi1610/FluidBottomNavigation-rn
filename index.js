@@ -187,13 +187,13 @@ class TabBar extends Component {
 
   startAnimation = index => {
     Animated.parallel([
-      Animated.timing(this.animatedItemValues[index], {
-        toValue: -30,
-        duration: 250,
-        delay: 20,
-        easing: Easing.in(Easing.elastic(1.5)),
-        useNativeDriver: true
-      }),
+      // Animated.timing(this.animatedItemValues[index], {
+      //   toValue: -30,
+      //   duration: 250,
+      //   delay: 20,
+      //   easing: Easing.in(Easing.elastic(1.5)),
+      //   useNativeDriver: true
+      // }),
       Animated.timing(this.animatedMiniBubbleValues[index], {
         toValue: 1,
         duration: 500,
