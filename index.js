@@ -120,6 +120,7 @@ class TabBar extends Component {
           key={index}
           onPress={() => {
             if (index === this.state.lastSelectedIndex) {
+              onTabPress({ route });
               return;
             }
 
